@@ -24,33 +24,35 @@ function MyComponent() {
 
 #### Parámetros :
 
->[!NOTE] initialValue
+>[!NOTE] 
+>`initialValue`
 >- El valor que desea que sea la propiedad del objeto ref inicialmente. 
 >- Puede ser un valor de cualquier tipo. 
 >- Este argumento se ignora después de la representación inicial. `current`
 
 #### Devuelve :
 
->[!NOTE] Devolución del hook
+>[!NOTE]
 >El hook useRef devuelve un objeto con una sola propiedad [`current`]:
 
->[!IMPORTANT] current 
+>[!IMPORTANT] 
+>`current` 
 >- Inicialmente, se establece en el que ha pasado. 
 >- Si pasas el objeto ref a React como un atributo a un nodo JSX, React establecerá su propiedad.`initialValue` `ref`  como `current`
 >- En los siguientes renders, devolverá el mismo objeto.`useRef`
 
 #### Advertencias :
 
->[!IMPORTANT] Diferencia de useState 
->A diferencia del estado, es mutable. Sin embargo, si contiene un objeto que se usa para la representación (por ejemplo, una parte de su estado), no debe mutar ese objeto.`ref.current`
+>[!IMPORTANT]
+>`Diferencia de useState` a diferencia del estado, es mutable. Sin embargo, si contiene un objeto que se usa para la representación (por ejemplo, una parte de su estado), no debe mutar ese objeto.`ref.current`
 
->[!IMPORTANT] Renderizado condicional 
->Cuando cambias la propiedad, React no vuelve a renderizar tu componente. Porque no es consciente de cuándo lo cambias debido a que una referencia es un objeto JavaScript simple.`ref.current`
+>[!IMPORTANT] 
+>`Renderizado condicional` cuando cambias la propiedad, React no vuelve a renderizar tu componente. Porque no es consciente de cuándo lo cambias debido a que una referencia es un objeto JavaScript simple.`ref.current`
 
 >[!WARNING] 
 >No escriba _ni lea_ durante la representación, excepto para la inicialización. Esto hace que el comportamiento del componente sea impredecible.`ref.current`
  
->[!WARNING] Trabajo en Modo estricto 
+>[!WARNING]
 >En el modo estricto, React **llamará a la función de su componente dos veces** para ayudarlo a encontrar impurezas accidentales. Este es un comportamiento exclusivo del desarrollo y no afecta a la producción. Cada objeto ref se creará dos veces, pero se descartará una de las versiones. Si la función del componente es pura (como debería ser), esto no debería afectar al comportamiento.
 
 ---
@@ -72,7 +74,6 @@ Mediante el uso de una referencia, se asegura de que:
 
 ##### Ejemplo 1 de 2: 
 
->[!WARNING] Contador de clics :
 Este componente utiliza una referencia para realizar un seguimiento de cuántas veces se hizo clic en el botón. Tenga en cuenta que está bien usar una referencia en lugar de un estado aquí porque el recuento de clics solo se lee y escribe en un controlador de eventos.
 
 ```tsx
@@ -97,7 +98,7 @@ export default function Counter() {
 
 ##### Ejemplo 2 : 
 
->[!WARNING] Trampa :
+>[!WARNING]
 **No escriba _ni lea_ `ref.current` durante el renderizado.** Leer o escribir una referencia durante el **renderizado** rompe estas expectativas de que el componente se una funcion pura.
  
 ```tsx
@@ -194,12 +195,11 @@ export default function Form() {
 }
 ```
 
----
 
 ##### Ejemplo 2 :
 
->[!WARNING] Evitar volver a crear el contenido de la referencia :
-React guarda el valor de referencia inicial una vez y lo ignora en los siguientes renderizados.
+>[!WARNING] 
+>Evitar volver a crear el contenido de la referencia. React guarda el valor de referencia inicial una vez y lo ignora en los siguientes renderizados.
 
 ```tsx
 function Video() {  
@@ -207,7 +207,7 @@ function Video() {
 // ...
 ```
 
->[!WARNING] Problemas de rendimiento 
+>[!WARNING]
 >Aunque el resultado de `new VideoPlayer()` solo se usa para el renderizado inicial, sigues llamando a esta función en cada renderizado. Esto puede ser un desperdicio si se trata de crear objetos caros.
 
 Para resolverlo, puede inicializar la referencia de esta manera:
@@ -226,7 +226,7 @@ function Video() {
 >Normalmente, no se permite escribir o leer `ref.current` durante el renderizado. Sin embargo, está bien en este caso porque el resultado es siempre el mismo y la condición solo se ejecuta durante la inicialización, por lo que es totalmente predecible.
 
 
-#### Ejemplo 4:
+#### Ejemplo 3:
 
 Solución de problemas No puedo obtener una referencia a un componente personalizado.
 Es posible que recibas un error en la consola, si intentas pasar uno a tu propio componente de esta manera :
@@ -237,11 +237,11 @@ const inputRef = useRef(null);
 return <MyInput ref={inputRef} />;
 ```
 
->[!IMPORTANT] Ref de CustomComponents
->De forma predeterminada, sus propios componentes no exponen referencias a los nodos DOM dentro de ellos. Para solucionar esto, busque el componente para el que desea obtener una referencia y implemente el ` forwardRef ` .
+>[!IMPORTANT]
+>`Ref en CustomComponents` de forma predeterminada, sus propios componentes no exponen referencias a los nodos DOM dentro de ellos. Para solucionar esto, busque el componente para el que desea obtener una referencia y implemente el ` forwardRef `.
 
->[!NOTE] forwardRef 
->Permite al componente principal obtener una referencia de un componente personalizado.
+>[!NOTE] 
+>`forwardRef` permite al componente principal obtener una referencia de un componente personalizado.
 
 ```tsx
 import { forwardRef } from 'react';

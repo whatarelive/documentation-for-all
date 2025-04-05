@@ -7,7 +7,7 @@
 useLayoutEffect(setup, dependencies?)
 ```
 
->[!WARNING] Problemas de rendimiento del hook
+>[!WARNING]
 > El hook `useLayoutEffect` puede perjudicar el rendimiento. Prefiera `useEffect` cuando sea posible.
 
 
@@ -30,13 +30,15 @@ function Tooltip() {
 
 #### Parámetros :
 
->[!IMPORTANT] setup (función de configuración): 
+>[!IMPORTANT] 
+>`setup (función de configuración)`
 > - La función con la lógica de configuración, esta también puede devolver opcionalmente una _función de limpieza_. 
 > - Antes de que su componente se agregue al DOM, se ejecutará la función de configuración. 
 > - Después de cada re-renderizado con dependencias cambiadas, primero ejecutará la función de limpieza (si la proporcionaste) con los valores antiguos, y luego ejecutará la función de configuración con los nuevos valores. 
 > - Antes de que el componente sea eliminado del DOM, se ejecutará la función de limpieza.
 
->[!IMPORTANT] dependencies (Arreglo de dependencias): 
+>[!IMPORTANT] 
+>`dependencies (Arreglo de dependencias)` 
 > - La lista de todos los valores reactivos a los que se hace referencia dentro del código. 
 > - La lista de dependencias debe tener un número constante de elementos y escribirse en línea. 
 > - React comparará cada dependencia con su valor anterior utilizando la comparación `Object.is`. Si se omite, el efecto se volverá a ejecutar después de cada reprocesamiento del componente.
@@ -48,10 +50,10 @@ function Tooltip() {
 
 #### Advertencias :
 
->[!CAUTION] Usos del hook
+>[!CAUTION]
 > El hook `useLayoutEffect` es un Hook, por lo que no se puede llamar dentro de bucles o condiciones.
 
->[!WARNING] Trabajo en  Modo estricto 
+>[!WARNING] 
 >Cuando el modo estricto está activado, React **ejecutará un ciclo adicional de configuración + limpieza** antes de la primera configuración real. Se trata de una prueba de esfuerzo que garantiza que la lógica de limpieza "refleje" la lógica de configuración y que detenga o deshaga lo que sea que esté haciendo la configuración. 
 
 >[!CAUTION] 
@@ -139,8 +141,8 @@ export default function Tooltip({ children, targetRect }) {
 
 ### 4- Solución de problemas :
 
->[!CAUTION] Recibo un error: 
->No hace nada en el servidor `useLayoutEffect`.
+>[!CAUTION] 
+>Recibo un error: No hace nada en el servidor `useLayoutEffect`.
 
 El propósito de `useLayoutEffect` es permitir que el componente utilice la información de diseño para la representación.
 

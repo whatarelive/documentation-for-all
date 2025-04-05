@@ -1,11 +1,13 @@
 ## 1- ¿Qué hace el hook useEffect? :
 
->[!NOTE] useEffect: 
->Es un React Hook que te permite sincronizar un componente con un sistema externo.
+>[!NOTE] 
+`useEffect` es un React Hook que te permite sincronizar un componente con un sistema externo.
 
 ```ts
 useEffect(setup, dependencies?)
 ```
+
+----
 
 ### 2- Implementación :
 Llame al hook `useEffect` en el nivel superior de su componente para declarar un efecto:
@@ -28,12 +30,15 @@ useEffect(() => {
 
 #### Parámetros :
 
->[!IMPORTANT] setup (función de configuración):
+>[!IMPORTANT] 
+>`setup (función de configuración)`
 > - Es la función con la lógica de tu efecto, esta puede devolver opcionalmente una función _de limpieza_ . Cuando su componente se agregue al DOM, React ejecutará su función de configuración. 
 > - Después de cada renderizado con dependencias modificadas, React primero ejecutará la función de limpieza (si la proporcionó) con los valores anteriores y luego ejecutará su función de configuración con los nuevos valores. 
 > - Después de que su componente se elimine del DOM, React ejecutará su función de limpieza.
 
->[!IMPORTANT] dependencies (Arreglo de dependencias): 
+>[!IMPORTANT] 
+>`dependencies (Arreglo de dependencias)`
+>
 >Es la lista opcional de todos los valores reactivos a los que se hace referencia dentro del código `setup`(función de configuración).
 >- Los `valores reactivos` incluyen accesorios, estado y todas las variables y funciones declaradas directamente dentro del cuerpo del componente. 
 >- La lista de dependencias debe tener un número constante de elementos y estar escrita en línea como `[dep1, dep2, dep3]`. 
@@ -47,16 +52,17 @@ useEffect(() => {
 
 #### Advertencias :
 
->[!CAUTION] Usos del hook 
+>[!CAUTION]
 >El `useEffect` es un Hook, por lo que solo puedes llamarlo **en el nivel superior de tu componente** o en tus propios Hooks. No puedes llamarlo bucles internos o condiciones. Si lo necesita, extraiga un nuevo componente y mueva el estado a él.
 
->[!IMPORTANT] Sistema externo es cualquier fragmento de código que no esté controlado por React :
+>[!IMPORTANT] 
+>Sistema externo es cualquier fragmento de código que no esté controlado por React:
 >
 >- Un temporizador gestionado con `setInterval()` y `clearInterval()` .
 >- Una suscripción a un evento usando `window.addEventListener()` y `window.removeEventListener()`.
 >- Una biblioteca de animación de terceros con una API como `animation.start()`y `animation.reset()`.
 
->[!WARNING] Trabajo en Modo estricto
+>[!WARNING]
 >Cuando el modo estricto está activado, React ejecutará **un ciclo adicional de configuración y limpieza de solo desarrollo** antes de la primera configuración real. Esta es una prueba de esfuerzo que garantiza que su lógica de limpieza "refleje" su lógica de configuración y que detenga o deshaga cualquier cosa que esté haciendo la configuración. 
 
 >[!CAUTION] 
@@ -71,7 +77,7 @@ useEffect(() => {
 >[!NOTE] 
 >Los efectos **sólo se ejecutan en el cliente.** No se ejecutan durante el procesamiento del servidor.
 
-
+------
 
 ### 3- Usos : 
 
